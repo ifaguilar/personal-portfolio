@@ -7,11 +7,13 @@ import tailwindcss from "@tailwindcss/vite";
 import { defineConfig } from "astro/config";
 
 export default defineConfig({
-  site: "https://ifaguilar-personal-portfolio.netlify.app",
-  integrations: [react(), sitemap(), mdx()],
-  adapter: netlify(),
-
+  server: {
+    port: 3000,
+  },
   vite: {
     plugins: [tailwindcss()],
   },
+  integrations: [react(), mdx(), sitemap()],
+  adapter: netlify(),
+  site: "https://ifaguilar-personal-portfolio.netlify.app",
 });
