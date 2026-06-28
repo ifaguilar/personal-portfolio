@@ -1,0 +1,77 @@
+---
+import "@/styles/global.css";
+
+interface Props {
+  title: string;
+  description: string;
+  socialImage?: string;
+}
+
+const { title, description, socialImage = "/og-image.png" } = Astro.props;
+
+const canonicalURL = new URL(Astro.url.pathname, Astro.site);
+const socialImageURL = new URL(socialImage, Astro.site);
+
+const schemaData = {
+  "@context": "https://schema.org",
+  "@type": "Person",
+  "name": "Isaac Aguilar",
+  "jobTitle": "Software Engineer & Full Stack Developer",
+  "url": String(Astro.site),
+  "sameAs": [
+    import.meta.env.PUBLIC_LINKEDIN_URL,
+    import.meta.env.PUBLIC_GITHUB_URL
+  ],
+  "description": description
+}
+---
+
+<!doctype html>
+<html lang="en">
+	<head>
+		<!-- Anti-FOUC theme script -->
+		<script is:inline>
+		(function () {
+			const storedTheme = localStorage.getItem('theme');
+			const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+			const isDark = storedTheme === 'dark' || (storedTheme === 'system' && prefersDark) || (!storedTheme && prefersDark);
+			document.documentElement.classList.toggle('dark', isDark);
+		})();
+		</script>
+
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
+		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+		<link rel="icon" href="/favicon.ico" />
+		<meta name="generator" content={Astro.generator} />
+
+		<!-- SEO -->
+		<title>{title}</title>
+		<meta name="title" content={title} />
+		<meta name="description" content={description} />
+		<link rel="canonical" href={canonicalURL} />
+
+		<!-- Open Graph -->
+		<meta property="og:type" content="website" />
+		<meta property="og:url" content={canonicalURL} />
+		<meta property="og:title" content={title} />
+		<meta property="og:description" content={description} />
+		<meta property="og:image" content={socialImageURL} />
+
+		<!-- X (Twitter) -->
+		<meta name="twitter:card" content="summary_large_image" />
+		<meta name="twitter:url" content={canonicalURL} />
+		<meta name="twitter:title" content={title} />
+		<meta name="twitter:description" content={description} />
+		<meta name="twitter:image" content={socialImageURL} />
+
+		<!-- Sitemap -->
+  		<link rel="sitemap" href="/sitemap-index.xml" />
+
+		<!-- JSON-LD -->
+		<script type="application/ld+json" is:inline set:html={JSON.stringify(schemaData)} />
+	</head>
+	<body>
+		<slot />
+	</body>
+</html>
