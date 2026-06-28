@@ -3,14 +3,17 @@ import BaseLayout from '@/layouts/base-layout.astro';
 import Header from "@/components/custom/header.astro";
 import Footer from "@/components/custom/footer.astro";
 
-const title = ""
-const description = ""
+interface Props {
+  title?: string;
+  description?: string;
+  socialImage?: string;
+}
 ---
 
-<BaseLayout title={title} description={description}>
-    <Header />
-		<main>
-			<slot />
-		</main>
-	<Footer />
+<BaseLayout {...Astro.props}>
+  <Header />
+  <main class="grow">
+    <slot />
+  </main>
+  <Footer />
 </BaseLayout>

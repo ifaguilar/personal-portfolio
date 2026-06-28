@@ -1,11 +1,13 @@
 ---
 import BaseLayout from '@/layouts/base-layout.astro';
 
-const title = ""
-const description = ""
+interface Props {
+  title?: string;
+  description?: string;
+  socialImage?: string;
+}
 ---
 
-<BaseLayout title={title} description={description}>
-    <div>ERROR LAYOUT</div>
-    <slot />
+<BaseLayout {...Astro.props}>
+  <slot />
 </BaseLayout>

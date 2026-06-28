@@ -1,13 +1,18 @@
 ---
 import "@/styles/global.css";
+import { SITE } from "@/config/site";
 
 interface Props {
-  title: string;
-  description: string;
+  title?: string;
+  description?: string;
   socialImage?: string;
 }
 
-const { title, description, socialImage = "/og-image.png" } = Astro.props;
+const {
+  title = SITE.title,
+  description = SITE.description,
+  socialImage = SITE.socialImage,
+} = Astro.props;
 
 const canonicalURL = new URL(Astro.url.pathname, Astro.site);
 const socialImageURL = new URL(socialImage, Astro.site);
