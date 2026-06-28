@@ -2,8 +2,3 @@ allowBuilds:
   "@parcel/watcher": true
   esbuild: true
   sharp: true
-
-packageExtensions:
-  "@whatwg-node/node-fetch@*":
-    dependencies:
-      tslib: "*"
