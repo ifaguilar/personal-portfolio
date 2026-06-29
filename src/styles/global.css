@@ -158,8 +158,4 @@
   h6 {
     @apply text-base font-bold tracking-tight text-balance;
   }
-
-  p {
-    @apply leading-6;
-  }
 }
