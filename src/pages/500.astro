@@ -2,7 +2,8 @@
 import ErrorLayout from '@/components/layouts/error-layout.astro';
 ---
 
-<ErrorLayout>
-  <h1>500</h1>
-  <p>Internal Server Error</p>
-</ErrorLayout>
+<ErrorLayout
+  code="500"
+  title="Something went wrong"
+  description="An unexpected issue happened on our side. Please head back home and try again."
+/>

@@ -2,7 +2,8 @@
 import ErrorLayout from '@/components/layouts/error-layout.astro';
 ---
 
-<ErrorLayout>
-  <h1>404</h1>
-  <p>Not Found</p>
-</ErrorLayout>
+<ErrorLayout
+  code="404"
+  title="Page not found"
+  description="The page you requested does not exist or may have been moved."
+/>

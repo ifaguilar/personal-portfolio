@@ -1,15 +1,37 @@
 ---
 import BaseLayout from '@/components/layouts/base-layout.astro';
+import { buttonVariants } from "@/components/ui/button";
+import {
+  Card,
+  CardDescription,
+  CardFooter,
+  CardHeader,
+} from "@/components/ui/card";
+import { HomeIcon } from 'lucide-react';
 
 interface Props {
-  title?: string;
-  description?: string;
-  socialImage?: string;
+  code: string;
+  title: string;
+  description: string;
 }
+
+const { code, title, description } = Astro.props;
 ---
 
-<BaseLayout {...Astro.props}>
-  <main class="flex items-center justify-center grow flex-col">
-    <slot />
+<BaseLayout title={`${code} | ${title}`} description={description}>
+  <main class="flex grow items-center justify-center px-6 py-16">
+    <Card className="w-full max-w-md">
+      <CardHeader className="gap-4">
+        <p class="font-bold text-8xl">{code}</p>
+        <h1>{title}</h1>
+        <CardDescription>{description}</CardDescription>
+      </CardHeader>
+      <CardFooter>
+        <a class={buttonVariants()} href="/">
+          <HomeIcon />
+          <span>Back to Home</span>
+        </a>
+      </CardFooter>
+    </Card>
   </main>
 </BaseLayout>
