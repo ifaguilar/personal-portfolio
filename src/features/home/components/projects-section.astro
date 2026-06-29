@@ -1,17 +1,17 @@
 ---
 import Container from "@/components/layouts/container.astro";
 import SectionHeader from "@/components/layouts/section-header.astro";
-import { getCollection } from "astro:content";
 import { buttonVariants } from "@/components/ui/button";
-import { projectLinkLabels } from "@/config/constants";
 import {
-    Card,
-    CardDescription,
-    CardFooter,
-    CardHeader,
-    CardTitle,
+Card,
+CardDescription,
+CardFooter,
+CardHeader,
+CardTitle,
 } from "@/components/ui/card";
-import { ArrowRightIcon, ExternalLinkIcon } from "lucide-react";
+import { projectLinkLabels } from "@/config/constants";
+import { getCollection } from "astro:content";
+import { ExternalLinkIcon, EyeIcon } from "lucide-react";
 
 const projects = await getCollection("projects");
 
@@ -39,10 +39,10 @@ const hasFeaturedProjects = featuredProjects.length > 0
                                     class={buttonVariants()}
                                     href={`/projects/${project.id}`}
                                 >
+                                    <EyeIcon />
                                     <span>
                                         View project
                                     </span>
-                                    <ArrowRightIcon />
                                 </a>
                                 
                                 {project.data.links.map((link) => (
@@ -52,8 +52,8 @@ const hasFeaturedProjects = featuredProjects.length > 0
                                         rel="noreferrer"
                                         target="_blank"
                                     >
-                                        <span>{projectLinkLabels[link.type]}</span>
                                         <ExternalLinkIcon />
+                                        <span>{projectLinkLabels[link.type]}</span>
                                     </a>
                                 ))}
                             </CardFooter>

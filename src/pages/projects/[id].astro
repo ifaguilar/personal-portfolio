@@ -1,8 +1,10 @@
 ---
+import Container from '@/components/layouts/container.astro';
 import PageLayout from '@/components/layouts/page-layout.astro';
 import { buttonVariants } from "@/components/ui/button";
-import { getCollection, render } from 'astro:content';
 import { projectLinkLabels } from "@/config/constants";
+import { getCollection, render } from 'astro:content';
+import { ExternalLinkIcon, HomeIcon } from 'lucide-react';
 
 export async function getStaticPaths() {
   const projects = await getCollection("projects");
@@ -20,22 +22,30 @@ const hasLinks = project.data.links.length > 0
 ---
 
 <PageLayout title={project.data.title} description={project.data.description}>
-  <h1>{project.data.title}</h1>
-  <p>{project.data.description}</p>
+  <Container>
+    <a href="/" class={buttonVariants({ variant: "outline" })}>
+      <HomeIcon />
+      <span>Back to Home</span>
+    </a>
 
-  {hasLinks ? (
-    <div class="flex flex-wrap gap-2">
-      {project.data.links.map((link) => (
-        <a
-          class={buttonVariants({ variant: link.type === "github" ? "outline" : "default" })}
-          href={link.href}
-          rel="noreferrer"
-          target="_blank"
-        >
-          {projectLinkLabels[link.type]}
-        </a>
-      ))}
-    </div>
-  ) : null}
-  <Content />
+    <h1>{project.data.title}</h1>
+    <p>{project.data.description}</p>
+
+    {hasLinks ? (
+      <div class="flex flex-wrap gap-2">
+        {project.data.links.map((link) => (
+          <a
+            class={buttonVariants({ variant: link.type === "github" ? "outline" : "default" })}
+            href={link.href}
+            rel="noreferrer"
+            target="_blank"
+          >
+            <ExternalLinkIcon />
+            <span>{projectLinkLabels[link.type]}</span>
+          </a>
+        ))}
+      </div>
+    ) : null}
+    <Content />
+  </Container>
 </PageLayout>
