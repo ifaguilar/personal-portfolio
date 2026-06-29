@@ -9,3 +9,22 @@ export const projectLinkLabels = {
   github: "GitHub",
   website: "Website",
 } as const;
+
+export const navItems = [
+  {
+    href: "#home",
+    label: "Home",
+  },
+  {
+    href: "#projects",
+    label: "Projects",
+  },
+  {
+    href: "#about",
+    label: "About",
+  },
+  {
+    href: "#contact",
+    label: "Contact",
+  },
+] as const;

@@ -1,0 +1,28 @@
+---
+import Container from "@/components/astro/container.astro";
+import { navItems } from "@/config/constants";
+import { ThemeDropdown } from "@/components/react/theme-dropdown"
+
+---
+
+<header>
+    <Container>
+        <div class="flex justify-between gap-16">
+            <a href="/">
+                Logo
+            </a>
+
+            <nav>
+                <ul class="flex gap-4">
+                    {navItems.map((item) => (
+                        <li class="flex">
+                            <a href={item.href} class="transition-colors hover:text-primary px-4 py-2">{item.label}</a>
+                        </li>
+                    ))}
+                </ul>
+            </nav>
+
+            <ThemeDropdown client:load />
+        </div>
+    </Container>
+</header>
