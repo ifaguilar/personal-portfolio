@@ -1,5 +1,6 @@
 ---
 import PageLayout from '@/components/layouts/page-layout.astro';
+import { buttonVariants } from "@/components/ui/button";
 import { getCollection, render } from 'astro:content';
 
 export async function getStaticPaths() {
@@ -13,9 +14,32 @@ export async function getStaticPaths() {
 
 const { project } = Astro.props;
 const { Content } = await render(project);
+
+const linkLabels = {
+  github: "GitHub",
+  website: "Live Site",
+} as const;
+
+const hasLinks = project.data.links.length > 0
 ---
 
 <PageLayout title={project.data.title} description={project.data.description}>
   <h1>{project.data.title}</h1>
+  <p>{project.data.description}</p>
+
+  {hasLinks ? (
+    <div class="flex flex-wrap gap-2">
+      {project.data.links.map((link) => (
+        <a
+          class={buttonVariants({ variant: link.type === "github" ? "outline" : "default" })}
+          href={link.href}
+          rel="noreferrer"
+          target="_blank"
+        >
+          {linkLabels[link.type]}
+        </a>
+      ))}
+    </div>
+  ) : null}
   <Content />
 </PageLayout>

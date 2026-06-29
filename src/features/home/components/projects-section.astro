@@ -1,8 +1,64 @@
 ---
-import { Label } from "@/components/ui/label";
+import Container from "@/components/layouts/container.astro";
+import SectionHeader from "@/components/layouts/section-header.astro";
+import { getCollection } from "astro:content";
+import { buttonVariants } from "@/components/ui/button";
+import {
+    Card,
+    CardDescription,
+    CardFooter,
+    CardHeader,
+    CardTitle,
+} from "@/components/ui/card";
+
+const projects = await getCollection("projects");
+
+const featuredProjects = projects.filter((project) => project.data.featured);
+const linkLabels = {
+    github: "GitHub",
+    website: "Live Site",
+} as const;
+
+const hasFeaturedProjects = featuredProjects.length > 0
 ---
 
-<section>
-    <Label>Check out my</Label>
-    <h2>Projects</h2>
-</section>
+{hasFeaturedProjects ? (
+    <section id="projects">
+        <Container>
+            <div class="flex flex-col gap-8">
+                <SectionHeader label="Check out my" title="Projects." />
+                <div class="grid gap-4">
+                    {featuredProjects.map((project) => (
+                        <Card className="h-full">
+                            <CardHeader className="gap-2">
+                                <CardTitle>{project.data.title}</CardTitle>
+                                <CardDescription>
+                                    {project.data.description}
+                                </CardDescription>
+                            </CardHeader>
+                            <CardFooter className="flex-wrap gap-2">
+                                <a
+                                    class={buttonVariants()}
+                                    href={`/projects/${project.id}`}
+                                >
+                                    View project
+                                </a>
+                                
+                                {project.data.links.map((link) => (
+                                    <a
+                                        class={buttonVariants({ variant: "outline" })}
+                                        href={link.href}
+                                        rel="noreferrer"
+                                        target="_blank"
+                                    >
+                                        {linkLabels[link.type]}
+                                    </a>
+                                ))}
+                            </CardFooter>
+                        </Card>
+                    ))}
+                </div>
+            </div>
+        </Container>
+    </section>
+) : null}

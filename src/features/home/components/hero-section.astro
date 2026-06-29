@@ -1,6 +1,17 @@
 ---
+import Container from "@/components/layouts/container.astro";
+import { buttonVariants } from "@/components/ui/button";
 ---
 
 <section>
-    <h2>Hero</h2>
+    <Container>
+        <div>
+            <h1>Isaac Aguilar</h1>
+            <p class="lead">Lorem ipsum</p>
+        </div>
+
+        <a href="#projects" class={buttonVariants()}>My Projects</a>
+
+        <a href="#contact" class={buttonVariants({ variant: "outline"})}>Contact Me</a>
+    </Container>
 </section>

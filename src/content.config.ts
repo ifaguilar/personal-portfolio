@@ -10,6 +10,15 @@ const projects = defineCollection({
   schema: z.object({
     title: z.string(),
     description: z.string(),
+    featured: z.boolean().default(false),
+    links: z
+      .array(
+        z.object({
+          type: z.enum(["github", "website"]),
+          href: z.string().url(),
+        }),
+      )
+      .default([]),
   }),
 });
 
