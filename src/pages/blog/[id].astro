@@ -3,9 +3,9 @@ import PageLayout from '@/components/layouts/page-layout.astro';
 import { getCollection, render } from 'astro:content';
 
 export async function getStaticPaths() {
-  const projects = await getCollection("projects");
+  const blog = await getCollection("blog");
 
-  return projects.map(project => ({
+  return blog.map(project => ({
     params: { id: project.id },
     props: { project },
   }));

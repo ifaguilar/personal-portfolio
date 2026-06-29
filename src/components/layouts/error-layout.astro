@@ -1,0 +1,15 @@
+---
+import BaseLayout from '@/components/layouts/base-layout.astro';
+
+interface Props {
+  title?: string;
+  description?: string;
+  socialImage?: string;
+}
+---
+
+<BaseLayout {...Astro.props}>
+  <main class="flex items-center justify-center grow flex-col">
+    <slot />
+  </main>
+</BaseLayout>
