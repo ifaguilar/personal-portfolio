@@ -1,10 +1,18 @@
 ---
 import Container from "@/components/astro/container.astro";
 import SectionHeader from "@/components/astro/section-header.astro";
+import { ContactForm } from "@/components/react/contact-form";
+import { Card, CardContent } from "@/components/ui/card";
 ---
 
 <section id="contact">
     <Container>
         <SectionHeader label="Interested?" title="Get In Touch."/>
+
+        <Card>
+            <CardContent>
+                <ContactForm client:load />
+            </CardContent>
+        </Card>
     </Container>
 </section>
