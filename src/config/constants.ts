@@ -4,3 +4,8 @@ export const SITE = {
     "Portfolio and projects by Isaac Aguilar." /* TODO: Improve this description */,
   socialImage: "/og-image.png",
 } as const;
+
+export const projectLinkLabels = {
+  github: "GitHub",
+  website: "Website",
+} as const;

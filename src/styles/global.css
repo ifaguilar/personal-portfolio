@@ -136,7 +136,7 @@
   }
 
   h1 {
-    @apply text-4xl font-bold tracking-tight text-balance;
+    @apply text-6xl font-bold tracking-tight text-balance;
   }
 
   h2 {

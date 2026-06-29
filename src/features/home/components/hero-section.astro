@@ -1,6 +1,8 @@
 ---
 import Container from "@/components/layouts/container.astro";
 import { buttonVariants } from "@/components/ui/button";
+import { ImageIcon, MailIcon } from "lucide-react";
+
 ---
 
 <section>
@@ -10,8 +12,14 @@ import { buttonVariants } from "@/components/ui/button";
             <p class="lead">Lorem ipsum</p>
         </div>
 
-        <a href="#projects" class={buttonVariants()}>My Projects</a>
+        <a href="#projects" class={buttonVariants()}>
+            <ImageIcon />
+            <span>My Projects</span>
+        </a>
 
-        <a href="#contact" class={buttonVariants({ variant: "outline"})}>Contact Me</a>
+        <a href="#contact" class={buttonVariants({ variant: "outline"})}>
+            <MailIcon />
+            <span>Contact Me</span>
+        </a>
     </Container>
 </section>
