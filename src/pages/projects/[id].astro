@@ -18,7 +18,8 @@ export async function getStaticPaths() {
 const { project } = Astro.props;
 const { Content } = await render(project);
 
-const hasLinks = project.data.links.length > 0
+const hasLinks = project.data.links.length > 0;
+
 ---
 
 <PageLayout title={project.data.title} description={project.data.description}>

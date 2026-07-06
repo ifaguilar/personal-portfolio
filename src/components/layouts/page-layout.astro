@@ -8,12 +8,13 @@ interface Props {
   description?: string;
   socialImage?: string;
 }
+
 ---
 
 <BaseLayout {...Astro.props}>
-  <Header />
-  <main class="grow flex flex-col gap-16">
-    <slot />
-  </main>
-  <Footer />
+    <Header />
+    <main class="grow flex flex-col gap-16">
+        <slot />
+    </main>
+    <Footer />
 </BaseLayout>

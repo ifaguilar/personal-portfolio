@@ -1,10 +1,17 @@
 ---
 import Container from "@/components/astro/container.astro";
 import SectionHeader from "@/components/astro/section-header.astro";
+import { Card } from "@/components/ui/card";
+
 ---
 
 <section id="about">
-    <Container>
-        <SectionHeader label="A little" title="About Me."/>
+    <Container className="flex flex-col gap-8">
+        <SectionHeader 
+            label="A little" 
+            title="About Me." 
+        />
+
+        <Card></Card>
     </Container>
 </section>

@@ -1,9 +1,18 @@
 ---
 import Container from "@/components/astro/container.astro";
+import { cn } from '@/lib/utils';
+import type { ComponentProps } from "react";
+
+interface Props extends ComponentProps<"footer"> {}
+
+const { className } = Astro.props;
+
 ---
 
-<footer>
-    <Container>
-        <span>Footer</span>
+<footer class={cn("py-24", className)}>
+    <Container className="flex flex-col items-center justify-center">
+        <small class="text-muted-foreground opacity-50 tracking-widest">
+            Built with
+        </small>
     </Container>
 </footer>

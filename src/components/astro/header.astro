@@ -1,28 +1,25 @@
 ---
 import Container from "@/components/astro/container.astro";
-import { navItems } from "@/config/constants";
-import { ThemeDropdown } from "@/components/react/theme-dropdown"
+import { PortfolioLogo } from "@/components/branding/portfolio-logo";
+import { HeaderActions } from "@/components/react/header-actions";
+import { NavigationMenu } from "@/components/react/navigation-menu";
+import { cn } from '@/lib/utils';
+import type { ComponentProps } from "react";
+
+interface Props extends ComponentProps<"header"> {}
+
+const { className } = Astro.props;
 
 ---
 
-<header>
-    <Container>
-        <div class="flex justify-between gap-16">
-            <a href="/">
-                Logo
-            </a>
+<header class={cn("bg-background/70 fixed inset-x-0 bottom-0 z-50 shadow-sm py-2 backdrop-blur-2xl border-b lg:sticky lg:bottom-auto lg:top-0", className)}>
+    <Container className="flex justify-between items-center">
+        <a href="/" aria-label="Isaac Aguilar">
+            <PortfolioLogo />
+        </a>
 
-            <nav>
-                <ul class="flex gap-4">
-                    {navItems.map((item) => (
-                        <li class="flex">
-                            <a href={item.href} class="transition-colors hover:text-primary px-4 py-2">{item.label}</a>
-                        </li>
-                    ))}
-                </ul>
-            </nav>
-
-            <ThemeDropdown client:load />
-        </div>
+        <NavigationMenu className="hidden lg:block" />
+        
+        <HeaderActions client:load />
     </Container>
 </header>

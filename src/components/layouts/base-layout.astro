@@ -1,6 +1,7 @@
 ---
+import { Toaster } from "@/components/ui/sonner";
+import { JOB_TITLE, NAME, site } from "@/config/constants";
 import "@/styles/global.css";
-import { SITE } from "@/config/constants";
 
 interface Props {
   title?: string;
@@ -9,26 +10,27 @@ interface Props {
 }
 
 const {
-  title = SITE.title,
-  description = SITE.description,
-  socialImage = SITE.socialImage,
+  title = site.title,
+  description = site.description,
+  socialImage = site.socialImage,
 } = Astro.props;
 
 const canonicalURL = new URL(Astro.url.pathname, Astro.site);
 const socialImageURL = new URL(socialImage, Astro.site);
 
 const schemaData = {
-  "@context": "https://schema.org",
-  "@type": "Person",
-  "name": "Isaac Aguilar",
-  "jobTitle": "Software Engineer & Full Stack Developer",
-  "url": String(Astro.site),
-  "sameAs": [
-    import.meta.env.PUBLIC_LINKEDIN_URL,
-    import.meta.env.PUBLIC_GITHUB_URL
-  ],
-  "description": description
+  	"@context": "https://schema.org",
+	"@type": "Person",
+	"name": NAME,
+	"jobTitle": JOB_TITLE,
+	"description": description,
+	"sameAs": [
+		import.meta.env.PUBLIC_LINKEDIN_URL,
+		import.meta.env.PUBLIC_GITHUB_URL
+		],
+	"url": String(Astro.site),
 }
+
 ---
 
 <!doctype html>
@@ -78,5 +80,6 @@ const schemaData = {
 	</head>
 	<body>
 		<slot />
+		<Toaster position="top-center" richColors client:load />
 	</body>
 </html>

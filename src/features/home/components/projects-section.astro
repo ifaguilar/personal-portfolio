@@ -7,7 +7,7 @@ Card,
 CardDescription,
 CardFooter,
 CardHeader,
-CardTitle,
+CardTitle
 } from "@/components/ui/card";
 import { projectLinkLabels } from "@/config/constants";
 import { getCollection } from "astro:content";
@@ -17,49 +17,53 @@ const projects = await getCollection("projects");
 
 const featuredProjects = projects.filter((project) => project.data.featured);
 
-const hasFeaturedProjects = featuredProjects.length > 0
+const hasFeaturedProjects = featuredProjects.length > 0;
+
 ---
 
 {hasFeaturedProjects ? (
     <section id="projects">
-        <Container>
-            <div class="flex flex-col gap-8">
-                <SectionHeader label="Check out my" title="Projects." />
-                <div class="grid gap-4">
-                    {featuredProjects.map((project) => (
-                        <Card className="h-full">
-                            <CardHeader className="gap-2">
-                                <CardTitle>{project.data.title}</CardTitle>
-                                <CardDescription>
-                                    {project.data.description}
-                                </CardDescription>
-                            </CardHeader>
-                            <CardFooter className="flex-wrap gap-2">
+        <Container className="flex flex-col gap-8">
+            <SectionHeader 
+                label="Check out my" 
+                title="Projects." 
+                description="Test description"
+            />
+
+            <div class="grid gap-4">
+                {featuredProjects.map((project) => (
+                    <Card className="h-full">
+                        <CardHeader className="gap-2">
+                            <CardTitle>{project.data.title}</CardTitle>
+                            <CardDescription>
+                                {project.data.description}
+                            </CardDescription>
+                        </CardHeader>
+                        <CardFooter className="flex-wrap gap-2">
+                            <a
+                                class={buttonVariants()}
+                                href={`/projects/${project.id}`}
+                            >
+                                <EyeIcon />
+                                <span>
+                                    View project
+                                </span>
+                            </a>
+                            
+                            {project.data.links.map((link) => (
                                 <a
-                                    class={buttonVariants()}
-                                    href={`/projects/${project.id}`}
+                                    class={buttonVariants({ variant: "outline" })}
+                                    href={link.href}
+                                    rel="noreferrer"
+                                    target="_blank"
                                 >
-                                    <EyeIcon />
-                                    <span>
-                                        View project
-                                    </span>
+                                    <ExternalLinkIcon />
+                                    <span>{projectLinkLabels[link.type]}</span>
                                 </a>
-                                
-                                {project.data.links.map((link) => (
-                                    <a
-                                        class={buttonVariants({ variant: "outline" })}
-                                        href={link.href}
-                                        rel="noreferrer"
-                                        target="_blank"
-                                    >
-                                        <ExternalLinkIcon />
-                                        <span>{projectLinkLabels[link.type]}</span>
-                                    </a>
-                                ))}
-                            </CardFooter>
-                        </Card>
-                    ))}
-                </div>
+                            ))}
+                        </CardFooter>
+                    </Card>
+                ))}
             </div>
         </Container>
     </section>

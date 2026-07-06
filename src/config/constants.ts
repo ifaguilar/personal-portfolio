@@ -1,5 +1,23 @@
-export const SITE = {
-  title: "Isaac Aguilar | Software Engineer & Full Stack Developer",
+export const NAME = "Isaac Aguilar";
+
+export const JOB_TITLE = "Software Engineer & Full Stack Developer";
+
+export const DEFAULT_SUBJECT = "New Portfolio Contact";
+
+export const CONTACT_FORM_MAX_LENGTHS = {
+  fullName: 100,
+  email: 254,
+  subject: 150,
+  message: 2000,
+} as const;
+
+export const CONTACT_FORM_MIN_LENGTHS = {
+  fullName: 2,
+  message: 10,
+} as const;
+
+export const site = {
+  title: `${NAME} | ${JOB_TITLE}`,
   description:
     "Portfolio and projects by Isaac Aguilar." /* TODO: Improve this description */,
   socialImage: "/og-image.png",
@@ -12,19 +30,19 @@ export const projectLinkLabels = {
 
 export const navItems = [
   {
-    href: "#home",
+    href: "/#home",
     label: "Home",
   },
   {
-    href: "#projects",
+    href: "/#projects",
     label: "Projects",
   },
   {
-    href: "#about",
+    href: "/#about",
     label: "About",
   },
   {
-    href: "#contact",
+    href: "/#contact",
     label: "Contact",
   },
 ] as const;

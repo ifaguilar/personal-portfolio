@@ -1,0 +1,114 @@
+---
+import { SendIcon } from "lucide-react";
+
+import { Button } from "@/components/ui/button";
+import { Field, FieldGroup, FieldLabel, FieldSet } from "@/components/ui/field";
+import { Input } from "@/components/ui/input";
+import { InputGroup, InputGroupAddon, InputGroupText, InputGroupTextarea } from "@/components/ui/input-group";
+import { CONTACT_FORM_MAX_LENGTHS, CONTACT_FORM_MIN_LENGTHS } from "@/config/constants";
+
+---
+
+<form>
+    <FieldGroup>
+    <FieldSet>
+        <FieldGroup>
+        <Field>
+            <FieldLabel htmlFor="fullName" required>
+            Full name
+            </FieldLabel>
+            <Input
+            id="fullName"
+            name="fullName"
+            type="text"
+            placeholder="Enter your full name..."
+            minLength={CONTACT_FORM_MIN_LENGTHS.fullName}
+            maxLength={CONTACT_FORM_MAX_LENGTHS.fullName}
+            required
+            />
+        </Field>
+        <Field>
+            <FieldLabel htmlFor="email" required>
+            Email address
+            </FieldLabel>
+            <Input
+            id="email"
+            name="email"
+            type="email"
+            placeholder="Enter your email address..."
+            maxLength={CONTACT_FORM_MAX_LENGTHS.email}
+            required
+            />
+        </Field>
+        <Field>
+            <FieldLabel htmlFor="subject">Subject</FieldLabel>
+            <Input
+            id="subject"
+            name="subject"
+            type="text"
+            placeholder="Enter the subject..."
+            maxLength={CONTACT_FORM_MAX_LENGTHS.subject}
+            />
+        </Field>
+        <Field>
+            <FieldLabel htmlFor="message" required>
+            Message
+            </FieldLabel>
+            <InputGroup>
+                <InputGroupTextarea 
+                    id="message" 
+                    name="message" 
+                    placeholder="Enter your message..." 
+                    minLength={CONTACT_FORM_MIN_LENGTHS.message}
+                    maxLength={CONTACT_FORM_MAX_LENGTHS.message} 
+                    required
+                />
+                <InputGroupAddon align="block-end">
+                    <InputGroupText className="text-xs text-muted-foreground">
+                        Up to {CONTACT_FORM_MAX_LENGTHS.message.toLocaleString()} characters
+                    </InputGroupText>
+                </InputGroupAddon>
+            </InputGroup>
+        </Field>
+        </FieldGroup>
+    </FieldSet>
+    <Field orientation="horizontal">
+        <Button type="submit" >
+            <SendIcon />
+            <span>Send message</span>
+        </Button>
+    </Field>
+    </FieldGroup>
+</form>
+
+
+<script>
+  import { actions } from "astro:actions";
+  import { toast } from "sonner";
+
+  const form = document.querySelector("form");
+  form?.addEventListener("submit", async (event) => {
+    event.preventDefault();
+
+    const formData = new FormData(form);
+
+    const formElements = form.querySelectorAll("input, textarea, button");
+    for (const formElement of formElements) {
+        formElement.setAttribute("disabled", "true");
+    }
+
+    const { error } = await actions.emails.sendEmail(formData);
+
+    for (const formElement of formElements) {
+        formElement.removeAttribute("disabled");
+    }
+
+    if (error) {
+        toast.error("Failed to send message!");
+        return;
+    }
+
+    form.reset();
+    toast.success("Message sent successfully!");
+  })
+</script>
