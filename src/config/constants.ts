@@ -46,3 +46,37 @@ export const navItems = [
     label: "Contact",
   },
 ] as const;
+
+import {
+  ClockIcon,
+  LinkIcon,
+  // MailIcon
+} from "lucide-react";
+
+export const contactItems = [
+  {
+    icon: ClockIcon,
+    title: "Timezone",
+    content: "Central Standard Time (CST)",
+  },
+  // {
+  //   icon: MailIcon,
+  //   title: "Email address",
+  //   content: "hello@yourdomain.com",
+  //   href: "mailto:hello@yourdomain.com",
+  // },
+  {
+    icon: LinkIcon,
+    title: "GitHub",
+    content: "ifaguilar",
+    href: import.meta.env.PUBLIC_GITHUB_URL,
+    isExternal: true,
+  },
+  {
+    icon: LinkIcon,
+    title: "LinkedIn",
+    content: "in/ifaguilar",
+    href: import.meta.env.PUBLIC_LINKEDIN_URL,
+    isExternal: true,
+  },
+];

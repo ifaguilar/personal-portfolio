@@ -2,8 +2,8 @@
 import ContactForm from "@/components/astro/contact-form.astro";
 import Container from "@/components/astro/container.astro";
 import SectionHeader from "@/components/astro/section-header.astro";
-import { Card, CardContent } from "@/components/ui/card";
-
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
+import { contactItems } from "@/config/constants";
 ---
 
 <section id="contact">
@@ -11,13 +11,54 @@ import { Card, CardContent } from "@/components/ui/card";
         <SectionHeader 
             label="Interested?" 
             title="Get In Touch." 
-            description="Test description"
+            description="I'm always open to discussing interesting opportunities, collaborations, or exciting projects. Drop a message below and let's connect!"
         />
 
-        <Card>
-            <CardContent>
-                 <ContactForm />
-            </CardContent>
-        </Card>
+        <div class="grid grid-cols-1 @3xl:grid-cols-3 gap-8">
+            <div class="@3xl:col-span-1">
+                <Card className="h-full">
+                    <CardHeader>
+                        <CardTitle>Contact Information</CardTitle>
+                        <CardDescription>Here is my general availability and where to find me online.</CardDescription>
+                    </CardHeader>
+                    <CardContent className="flex flex-col gap-6">
+                        {contactItems.map(({ icon: Icon, title, content, href, isExternal }) => (
+                            <div class="flex items-center gap-4">
+                                <div class="flex shrink-0 h-10 w-10 items-center justify-center rounded-full bg-primary/10">
+                                    <Icon className="size-5 text-primary" />
+                                </div>
+                                <div class="flex flex-col">
+                                    <span class="text-sm font-medium">{title}</span>
+                                    {href ? (
+                                        <a 
+                                            href={href} 
+                                            target={isExternal ? "_blank" : undefined} 
+                                            rel={isExternal ? "noopener noreferrer" : undefined} 
+                                            class="text-sm text-muted-foreground hover:text-primary transition-colors"
+                                        >
+                                            {content}
+                                        </a>
+                                    ) : (
+                                        <span class="text-sm text-muted-foreground">{content}</span>
+                                    )}
+                                </div>
+                            </div>
+                        ))}
+                    </CardContent>
+                </Card>
+            </div>
+            
+            <div class="@3xl:col-span-2">
+                <Card className="h-full">
+                    <CardHeader>
+                        <CardTitle>Send a Message</CardTitle>
+                        <CardDescription>Fill out the form below and I'll get back to you as soon as I can.</CardDescription>
+                    </CardHeader>
+                    <CardContent>
+                         <ContactForm />
+                    </CardContent>
+                </Card>
+            </div>
+        </div>
     </Container>
 </section>

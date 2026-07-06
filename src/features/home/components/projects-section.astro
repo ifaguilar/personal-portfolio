@@ -1,6 +1,7 @@
 ---
 import Container from "@/components/astro/container.astro";
 import SectionHeader from "@/components/astro/section-header.astro";
+import { Badge } from "@/components/ui/badge";
 import { buttonVariants } from "@/components/ui/button";
 import {
 Card,
@@ -27,13 +28,14 @@ const hasFeaturedProjects = featuredProjects.length > 0;
             <SectionHeader 
                 label="Check out my" 
                 title="Projects." 
-                description="Test description"
+                description="Projects I built from scratch to showcase my approach to software engineering."
             />
 
             <div class="grid gap-4">
                 {featuredProjects.map((project) => (
                     <Card className="h-full">
                         <CardHeader className="gap-2">
+                            <Badge variant="outline">Featured</Badge>
                             <CardTitle>{project.data.title}</CardTitle>
                             <CardDescription>
                                 {project.data.description}
@@ -45,9 +47,7 @@ const hasFeaturedProjects = featuredProjects.length > 0;
                                 href={`/projects/${project.id}`}
                             >
                                 <EyeIcon />
-                                <span>
-                                    View project
-                                </span>
+                                <span>View project</span>
                             </a>
                             
                             {project.data.links.map((link) => (

@@ -8,6 +8,6 @@ const { className } = Astro.props;
 
 ---
 
-<div class={cn("container mx-auto px-4 md:px-16 lg:px-36 xl:px-48 2xl:px-64", className)}>
+<div class={cn("container @container mx-auto px-4 md:px-16 lg:px-36 xl:px-48 2xl:px-64", className)}>
     <slot />
 </div>

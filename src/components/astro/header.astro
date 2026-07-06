@@ -3,6 +3,7 @@ import Container from "@/components/astro/container.astro";
 import { PortfolioLogo } from "@/components/branding/portfolio-logo";
 import { HeaderActions } from "@/components/react/header-actions";
 import { NavigationMenu } from "@/components/react/navigation-menu";
+import { NAME } from "@/config/constants";
 import { cn } from '@/lib/utils';
 import type { ComponentProps } from "react";
 
@@ -14,7 +15,7 @@ const { className } = Astro.props;
 
 <header class={cn("bg-background/70 fixed inset-x-0 bottom-0 z-50 shadow-sm py-2 backdrop-blur-2xl border-b lg:sticky lg:bottom-auto lg:top-0", className)}>
     <Container className="flex justify-between items-center">
-        <a href="/" aria-label="Isaac Aguilar">
+        <a href="/" aria-label={NAME}>
             <PortfolioLogo />
         </a>
 

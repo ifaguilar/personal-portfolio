@@ -136,6 +136,10 @@
     cursor: pointer;
   }
 
+  section {
+    @apply scroll-mt-16;
+  }
+
   h1 {
     @apply text-6xl font-bold tracking-tight text-balance;
   }

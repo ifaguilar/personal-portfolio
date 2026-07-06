@@ -3,9 +3,10 @@ import { ActionError, defineAction } from "astro:actions";
 import { Resend } from "resend";
 
 import {
-  DEFAULT_SUBJECT,
   CONTACT_FORM_MAX_LENGTHS,
   CONTACT_FORM_MIN_LENGTHS,
+  DEFAULT_SUBJECT,
+  NAME,
 } from "@/config/constants";
 
 const resend = new Resend(import.meta.env.RESEND_API_KEY);
@@ -29,7 +30,7 @@ export const emails = {
       const subject = input.subject || DEFAULT_SUBJECT;
 
       const { data, error } = await resend.emails.send({
-        from: `Isaac Aguilar <${import.meta.env.RESEND_FROM_EMAIL}>`,
+        from: `${NAME} <${import.meta.env.RESEND_FROM_EMAIL}>`,
         to: [import.meta.env.RESEND_TO_EMAIL],
         replyTo: input.email,
         subject,
