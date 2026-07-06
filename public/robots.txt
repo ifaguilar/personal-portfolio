@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://ifaguilar-personal-portfolio.netlify.app/sitemap-index.xml
+Sitemap: https://isaacaguilar.dev/sitemap-index.xml
