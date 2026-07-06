@@ -14,11 +14,14 @@ const projects = defineCollection({
     links: z
       .array(
         z.object({
-          type: z.enum(["github", "website"]),
-          href: z.string().url(),
+          type: z.enum(["website", "github"]),
+          href: z.url(),
         }),
       )
       .default([]),
+    technologies: z.array(z.string()).default([]),
+    images: z.array(z.string()).default([]),
+    order: z.number().default(99),
   }),
 });
 

@@ -7,6 +7,15 @@ links:
     href: https://example.com/project-1
   - type: github
     href: https://github.com/example/project-1
+technologies: []
+images: []
+order: 1
 ---
 
-Your project content here.
+## Overview
+
+Your project overview here...
+
+## Features
+
+Your project features here...
