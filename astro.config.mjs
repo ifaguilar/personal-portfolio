@@ -24,5 +24,5 @@ export default defineConfig({
   },
   integrations: [react(), mdx(), sitemap()],
   adapter: netlify(),
-  site: "https://ifaguilar-personal-portfolio.netlify.app",
+  site: "https://isaacaguilar.dev",
 });
