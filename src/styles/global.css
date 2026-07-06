@@ -123,11 +123,12 @@
   }
 
   html {
-    @apply font-sans;
+    @apply selection:bg-primary/20 scroll-smooth font-sans;
+    scrollbar-gutter: stable;
   }
 
   body {
-    @apply bg-background text-foreground flex min-h-svh flex-col;
+    @apply bg-background text-foreground relative flex min-h-svh flex-col;
   }
 
   button:not(:disabled),
