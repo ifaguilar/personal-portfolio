@@ -2,17 +2,44 @@
 import Container from "@/components/astro/container.astro";
 import { cn } from '@/lib/utils';
 import type { ComponentProps } from "react";
+import { AstroIcon } from "../ui/svgs/astro-icon";
+import {TypeScriptIcon} from "../ui/svgs/typescript-icon"
+import { TailwindCSSIcon} from "../ui/svgs/tailwindcss-icon"
 
 interface Props extends ComponentProps<"footer"> {}
 
 const { className } = Astro.props;
 
+const footerIcons = [
+    {
+        value: "typescript",
+        label: "TypeScript",
+        icon: TypeScriptIcon,
+    },
+    {
+        value: "astro",
+        label: "Astro",
+        icon: AstroIcon,
+    },
+    {
+        value: "tailwind-css",
+        label: "Tailwind CSS",
+        icon: TailwindCSSIcon,
+    },
+]
+
 ---
 
 <footer class={cn("py-24", className)}>
-    <Container className="flex flex-col items-center justify-center">
+    <Container className="flex flex-col items-center justify-center gap-10">
         <small class="text-muted-foreground opacity-50 tracking-widest">
             Built with
         </small>
+
+        <div class="flex items-center gap-10">
+            {footerIcons.map((footerIcon) => (
+                <footerIcon.icon key={footerIcon.value} className="grayscale-100 size-10 hover:grayscale-0 transition duration-400" />
+            ))}
+        </div>
     </Container>
 </footer>
